@@ -10,10 +10,20 @@ namespace SimpleDate
         public static readonly Date MinValue = DateTime.MinValue;
         public static readonly Date MaxValue = DateTime.MaxValue;
 
-        /// <param name="date">yyyy-MM-dd format</param>
+        /// <param name="date">Accepts only "yyyy-MM-dd" format</param>
         public Date(string date = null)
         {
             DateTime.TryParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out this.date);
+        }
+
+        public Date(string date, string format)
+        {
+            DateTime.TryParseExact(date, format, CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out this.date);
+        }
+
+        public Date(string date, string format, IFormatProvider provider)
+        {
+            DateTime.TryParseExact(date, format, provider, DateTimeStyles.AssumeLocal, out this.date);
         }
 
         public Date(int year, int month, int day)
